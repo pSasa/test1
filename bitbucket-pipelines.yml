@@ -6,13 +6,8 @@
 image: node:6.9.4
 
 pipelines:
-  default:
-    - step:
-        script:
-          - echo "do nothing"
-
-    - step:
-        name: Manual step
-        trigger: manual
-        script:
-          - echo "Increase version number in $BITBUCKET_BRANCH branch"
+  custom: # Pipelines that are triggered manually
+    sonar: # The name that is displayed in the list in the Bitbucket Cloud GUI
+      - step:
+          script:
+            - echo "Increase version number in $BITBUCKET_BRANCH branch"
