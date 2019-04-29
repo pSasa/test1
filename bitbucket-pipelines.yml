@@ -19,6 +19,7 @@ pipelines:
         script:
           - echo "This step runs once you click the 'Run' button"
           - echo 123 >> README.md
+          - echo $BITBUCKET_BRANCH
           - git add README.md
           - git commit -m "Version "
           - git push origin master
