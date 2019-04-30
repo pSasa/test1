@@ -11,6 +11,6 @@ pipelines:
       - step:
           name: Push
           script:
-            - if [[ "$BITBUCKET_BRANCH" -eq "Preview" ]]; then echo "File does not exist PR"; fi
-            - if [[ "$BITBUCKET_BRANCH" -eq "Sandbox" ]]; then echo "File does not exist SB"; fi
-            - if [[ "$BITBUCKET_BRANCH" -eq "master" ]]; then echo "File does not exist ms"; fi
+            - if [[ $BITBUCKET_BRANCH == Preview ]]; then echo "File does not exist PR"; fi
+            - if [[ $BITBUCKET_BRANCH == Sandbox ]]; then echo "File does not exist SB"; fi
+            - if [[ $BITBUCKET_BRANCH == master ]]; then echo "File does not exist ms"; fi
