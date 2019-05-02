@@ -11,7 +11,12 @@ pipelines:
       - step:
           name: Push 1
           script:
-            - if [[ $BITBUCKET_BRANCH != master ]]; then echo "Wrong branch. Expected 'Preview'"; exit 1; fi
+            - if [[ $BITBUCKET_BRANCH != Preview ]]; then echo "Wrong branch. Expected 'Preview'"; exit 1; fi
+            - git remote add gitlab https://$GitUser:$GitPassword@github.com/pSasa/test1.git
+            - git config --global user.email "commits-noreply@bitbucket.org"
+            - git config --global user.name "bitbucket-pipelines"
+            - git push gitlab Preview:master1
+            - git remote remove gitlab
             - echo 11
 
     sonar1:
