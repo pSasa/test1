@@ -6,11 +6,17 @@
 image: node:6.9.4
 
 pipelines:
-  custom: # Pipelines that can only be triggered manually
+  custom:
     sonar:
       - step:
-          name: Push
+          name: Push 1
           script:
-            - if [[ $BITBUCKET_BRANCH == Preview ]]; then echo "File does not exist PR"; fi
-            - if [[ $BITBUCKET_BRANCH == Sandbox ]]; then echo "File does not exist SB"; fi
-            - if [[ $BITBUCKET_BRANCH == master ]]; then echo "File does not exist ms"; fi
+            - if [[ $BITBUCKET_BRANCH != master ]]; then echo "Wrong branch. Expected 'Preview'"; exit 1; fi
+            - echo 11
+
+    sonar1:
+      - step:
+          name: Push 2
+          script:
+            - if [[ $BITBUCKET_BRANCH != Preview ]]; then echo "Wrong branch. Expected 'Preview'"; exit 1; fi
+            - echo OK
